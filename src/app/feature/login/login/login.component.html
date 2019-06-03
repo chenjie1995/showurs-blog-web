@@ -1,0 +1,41 @@
+<div class="container" nz-row nzType="flex" nzJustify="center" nzAlign="middle">
+    <div class="login-box" nz-col nzXs="24" nzSm="16" nzMd="12" nzLg="10" nzXl="7" nzXXl="5">
+        <div class="login-content">
+            <div class="login-content-title">
+                <img class="title-logo" src="">
+                <h2 class="title-headline">登录</h2>
+                <span class="title-description">使用你的 <a>Showurs Blog</a> 账号</span>
+            </div>
+            <form nz-form class="login-content-form">
+                <nz-form-item nzType="flex" nzJustify="center">
+                    <nz-form-control nzSpan="18">
+                        <nz-input-group [nzPrefix]="prefixSmile">
+                            <input nz-input [(ngModel)]="userLogin.username" id="username" name="username" placeholder="请输入用户名">
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item nzType="flex" nzJustify="center">
+                    <nz-form-control nzSpan="18">
+                        <nz-input-group [nzPrefix]="prefixLock">
+                            <input nz-input type="password" [(ngModel)]="userLogin.password" id="password" name="password" placeholder="请输入密码">
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item nzType="flex" nzJustify="center">
+                    <nz-form-control nzSpan="18">
+                        <button class="login-button" nz-button nzType="primary" [nzLoading]="isLoadingLoginButton">登录</button>
+                    </nz-form-control>
+                </nz-form-item>
+            </form>
+            <div class="login-content-bottom">
+                <span class="bottom-text">
+                    没有账号？ 
+                    <a><i nz-icon type="smile"></i> 现在注册</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #prefixSmile><i nz-icon type="smile"></i></ng-template>
+<ng-template #prefixLock><i nz-icon type="lock"></i></ng-template>
