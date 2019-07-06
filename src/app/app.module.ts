@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { LoginModule } from './feature/login/login.module';
+import { HomeModule } from './feature/home/home.module';
 
 registerLocaleData(zh);
 
@@ -26,7 +27,8 @@ registerLocaleData(zh);
         HttpClientModule,
         BrowserAnimationsModule,
         CoreModule,
-        LoginModule
+        LoginModule,
+        HomeModule
     ],
     providers: [{ provide: NZ_I18N, useValue: zh_CN }],
     bootstrap: [AppComponent]

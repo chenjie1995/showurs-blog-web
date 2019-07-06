@@ -1,0 +1,52 @@
+<div class="container" nz-row nzType="flex" nzJustify="center" nzAlign="middle">
+    <div class="register-box" nz-col nzXs="24" nzSm="16" nzMd="12" nzLg="10" nzXl="7" nzXXl="5">
+        <div class="register-content">
+            <div class="register-content-title">
+                <img class="title-logo" src="">
+                <h2 class="title-headline">注册</h2>
+                <span class="title-description">注册 <a routerLink="/home">Showurs Blog</a> 账号，留下你的想法吧</span>
+            </div>
+            <form nz-form class="register-content-form">
+                <nz-form-item nzType="flex" nzJustify="center" nzGutter="8">
+                    <nz-form-label nzXs="22" nzSm="5" nzRequired nzFor="username">用户名</nz-form-label>
+                    <nz-form-control nzXs="22" nzSm="17">
+                        <input nz-input id="username" name="username" placeholder="请输入你的用户名" />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item nzType="flex" nzJustify="center" nzGutter="8">
+                    <nz-form-label nzXs="22" nzSm="5" nzRequired nzFor="email">email</nz-form-label>
+                    <nz-form-control nzXs="22" nzSm="17">
+                        <input nz-input id="email" name="email" placeholder="请输入你的电子邮箱" />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item nzType="flex" nzJustify="center" nzGutter="8">
+                    <nz-form-label nzXs="22" nzSm="5" nzRequired nzFor="password">密码</nz-form-label>
+                    <nz-form-control nzXs="22" nzSm="17">
+                        <input nz-input id="password" name="password" placeholder="请输入你的密码" />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item nzType="flex" nzJustify="center" nzGutter="8">
+                    <nz-form-label nzXs="22" nzSm="5" nzRequired nzFor="captcha">验证码</nz-form-label>
+                    <nz-form-control nzXs="22" nzSm="17">
+                        <div nz-row nzGutter="8">
+                            <div nz-col nzSpan="12">
+                                <input nz-input id="captcha" name="captcha" placeholder="" />
+                            </div>
+                            <div nz-col nzSpan="12">
+                                <img class="form-captcha" src="http://localhost:9200/user/users/captcha-image">
+                            </div>
+                        </div>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item nzType="flex" nzJustify="start">
+                    <nz-form-control nzXs="12" nzSm="6" nzPush="6">
+                        <button class="form-register-button" nz-button nzType="primary" [nzLoading]="isLoadingRegisterButton">注册</button>
+                    </nz-form-control>
+                </nz-form-item>
+            </form>
+            <div class="register-content-bottom">
+                <span class="bottom-text">已有账号？<a routerLink="/login"><i nz-icon type="smile"></i> 马上登录</a></span>
+            </div>
+        </div>
+    </div>
+</div>
