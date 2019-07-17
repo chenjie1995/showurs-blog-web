@@ -10,9 +10,9 @@ import { UserLogin } from 'src/app/vo/user-login';
 })
 export class LoginComponent implements OnInit {
 
-    private isLoadingLoginButton: boolean = false;
+    isLoadingLoginButton: boolean = false;
 
-    private userLogin: UserLogin = new UserLogin();
+    userLogin: UserLogin = new UserLogin();
 
     constructor() { }
 

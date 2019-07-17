@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigService } from 'src/app/core/service/config.service';
 
 @Component({
     selector: 'app-register',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-    private isLoadingRegisterButton: boolean = false;
+    isLoadingRegisterButton: boolean = false;
 
-    constructor() { }
+    constructor(private configService: ConfigService) { 
+    }
 
     ngOnInit() {
     }
