@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { UserLogin } from 'src/app/vo/user-login';
+import { LoginService } from '../service/login.service';
 
 @Component({
     selector: 'app-login',
@@ -14,14 +15,17 @@ export class LoginComponent implements OnInit {
 
     userLogin: UserLogin = new UserLogin();
 
-    constructor() { }
+    constructor(private loginService: LoginService) { }
 
     ngOnInit() {
     }
 
     login() {
         this.isLoadingLoginButton = true;
-        console.log(this.userLogin);
+        this.loginService.login(this.userLogin).subscribe(data => {
+            this.isLoadingLoginButton = false;
+            
+        });
     }
 
     initValidLogin() {

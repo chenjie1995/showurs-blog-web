@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConfigService } from './service/config.service';
+import { LocalStorageService } from './service/local-storage.service';
 
 @NgModule({
     declarations: [],
@@ -8,7 +9,8 @@ import { ConfigService } from './service/config.service';
         CommonModule
     ],
     providers: [
-        ConfigService
+        ConfigService,
+        LocalStorageService
     ]
 })
 export class CoreModule { }

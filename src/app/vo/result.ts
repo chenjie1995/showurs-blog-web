@@ -1,5 +1,5 @@
-export class Result {
+export class Result<T> {
     code: number;
     message: string;
-    data: any;
+    data: T;
 }
