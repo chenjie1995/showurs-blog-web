@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LocalStorageService } from './local-storage.service';
+import { HttpService } from './http.service';
 
-describe('LocalStorageService', () => {
+describe('HttpService', () => {
     beforeEach(() => TestBed.configureTestingModule({}));
 
     it('should be created', () => {
-        const service: LocalStorageService = TestBed.get(LocalStorageService);
+        const service: HttpService = TestBed.get(HttpService);
         expect(service).toBeTruthy();
     });
 });

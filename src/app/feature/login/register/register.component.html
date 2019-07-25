@@ -66,7 +66,7 @@
                                 <input nz-input id="captcha" name="captcha" placeholder="" />
                             </div>
                             <div nz-col nzSpan="12">
-                                <img class="form-captcha" src="http://localhost:9200/user/users/captcha-image">
+                                <img class="form-captcha" [src]="captchaUrl">
                             </div>
                         </div>
                     </nz-form-control>

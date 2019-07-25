@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 
 import { UserLogin } from 'src/app/vo/user-login';
 import { LoginService } from '../service/login.service';
+import { UserToken } from 'src/app/vo/user-token';
+import { Result } from 'src/app/vo/result';
 
 @Component({
     selector: 'app-login',
@@ -11,19 +13,27 @@ import { LoginService } from '../service/login.service';
 })
 export class LoginComponent implements OnInit {
 
-    isLoadingLoginButton: boolean = false;
+    isLoadingLoginButton: boolean;
 
-    userLogin: UserLogin = new UserLogin();
+    userLogin: UserLogin;
 
-    constructor(private loginService: LoginService) { }
+    userToken: UserToken;
+
+    constructor(private loginService: LoginService) {
+        this.isLoadingLoginButton = false;
+        this.userLogin = new UserLogin();
+    }
 
     ngOnInit() {
     }
 
     login() {
         this.isLoadingLoginButton = true;
-        this.loginService.login(this.userLogin).subscribe(data => {
+        this.loginService.login(this.userLogin).subscribe(result => {
             this.isLoadingLoginButton = false;
+            this.userToken = result.data;
+            console.log(this.userToken.token);
+        }, error => {
             
         });
     }
