@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { NzMessageService } from 'ng-zorro-antd';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { UserLogin } from 'src/app/vo/user-login';
 import { LoginService } from '../service/login.service';
 import { UserToken } from 'src/app/vo/user-token';
-import { Result } from 'src/app/vo/result';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-login',
@@ -19,7 +21,9 @@ export class LoginComponent implements OnInit {
 
     userToken: UserToken;
 
-    constructor(private loginService: LoginService) {
+    constructor(private loginService: LoginService,
+        private message: NzMessageService,
+        private router: Router) {
         this.isLoadingLoginButton = false;
         this.userLogin = new UserLogin();
     }
@@ -32,9 +36,11 @@ export class LoginComponent implements OnInit {
         this.loginService.login(this.userLogin).subscribe(result => {
             this.isLoadingLoginButton = false;
             this.userToken = result.data;
-            console.log(this.userToken.token);
+            this.message.success('登录成功');
+            this.router.navigateByUrl('home');
         }, error => {
-            
+            this.isLoadingLoginButton = false;
+            this.message.warning(error.message);
         });
     }
 

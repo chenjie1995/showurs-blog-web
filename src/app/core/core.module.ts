@@ -5,6 +5,7 @@ import { ConfigService } from './service/config.service';
 import { LocalStorageService } from './service/local-storage.service';
 import { AuthService } from './service/auth.service';
 import { HttpService } from './service/http.service';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 @NgModule({
     declarations: [],

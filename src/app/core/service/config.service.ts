@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
-const appName: string = 'ShowUrs Blog';
+const appName = 'ShowUrs Blog';
 
 @Injectable({
     providedIn: 'root'

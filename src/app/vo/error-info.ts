@@ -1,5 +1,4 @@
-export class Result<T> {
+export class ErrorInfo {
     code: number;
     message: string;
-    data: T;
 }
