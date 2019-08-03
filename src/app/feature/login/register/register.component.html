@@ -55,7 +55,7 @@
                 <nz-form-item nzType="flex" nzJustify="center" nzGutter="8">
                     <nz-form-label nzXs="22" nzSm="5" nzRequired nzFor="password">密码</nz-form-label>
                     <nz-form-control nzXs="22" nzSm="17">
-                        <input nz-input id="password" name="password" placeholder="请输入你的密码" />
+                        <input nz-input type="password" id="password" name="password" placeholder="请输入你的密码" />
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item nzType="flex" nzJustify="center" nzGutter="8">
@@ -63,7 +63,7 @@
                     <nz-form-control nzXs="22" nzSm="17">
                         <div nz-row nzGutter="8">
                             <div nz-col nzSpan="12">
-                                <input nz-input id="captcha" name="captcha" placeholder="" />
+                                <input nz-input id="captcha" name="captcha" placeholder="请输入验证码" />
                             </div>
                             <div nz-col nzSpan="12">
                                 <img class="form-captcha" [src]="captchaUrl">

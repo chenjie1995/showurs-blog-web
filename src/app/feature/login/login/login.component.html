@@ -38,27 +38,25 @@
                 <h2 class="title-headline">登录</h2>
                 <span class="title-description">使用你的 <a routerLink="/home">Showurs Blog</a> 账号</span>
             </div>
-            <form nz-form class="login-content-form">
+            <form nz-form class="login-content-form" [formGroup]="userLogin" (ngSubmit)="login()">
                 <nz-form-item nzType="flex" nzJustify="center">
                     <nz-form-control nzXs="22" nzSm="18">
-                        <nz-input-group [nzPrefix]="prefixUser">
-                            <input nz-input [(ngModel)]="userLogin.username" id="username" name="username"
-                                placeholder="请输入用户名">
+                        <nz-input-group nzPrefixIcon="user">
+                            <input nz-input formControlName="username" placeholder="请输入用户名">
                         </nz-input-group>
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item nzType="flex" nzJustify="center">
                     <nz-form-control nzXs="22" nzSm="18">
-                        <nz-input-group [nzPrefix]="prefixLock">
-                            <input nz-input type="password" [(ngModel)]="userLogin.password" id="password"
-                                name="password" placeholder="请输入密码">
+                        <nz-input-group nzPrefixIcon="lock">
+                            <input nz-input type="password" formControlName="password" placeholder="请输入密码">
                         </nz-input-group>
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item nzType="flex" nzJustify="center">
                     <nz-form-control nzXs="22" nzSm="18">
-                        <button class="login-button" nz-button nzType="primary" [nzLoading]="isLoadingLoginButton"
-                            (click)="login()">登录</button>
+                        <button class="login-button" type="submit" nz-button nzType="primary"
+                            [nzLoading]="isLoadingLoginButton">登录</button>
                     </nz-form-control>
                 </nz-form-item>
             </form>
@@ -68,6 +66,3 @@
         </div>
     </div>
 </div>
-
-<ng-template #prefixUser><i nz-icon type="user"></i></ng-template>
-<ng-template #prefixLock><i nz-icon type="lock"></i></ng-template>

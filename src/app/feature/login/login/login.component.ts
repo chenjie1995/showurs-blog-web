@@ -5,7 +5,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { UserLogin } from 'src/app/vo/user-login';
 import { LoginService } from '../service/login.service';
 import { UserToken } from 'src/app/vo/user-token';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,41 +13,37 @@ import { Router } from '@angular/router';
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
     isLoadingLoginButton: boolean;
-
-    userLogin: UserLogin;
-
+    userLogin: FormGroup;
     userToken: UserToken;
 
     constructor(private loginService: LoginService,
         private message: NzMessageService,
-        private router: Router) {
-        this.isLoadingLoginButton = false;
-        this.userLogin = new UserLogin();
+        private router: Router,
+        private fb: FormBuilder) {
+            this.isLoadingLoginButton = false;
+            this.userLogin = this.fb.group({
+                username: ['', Validators.required],
+                password: ['', Validators.required]
+            });
     }
 
     ngOnInit() {
+
     }
 
     login() {
-        this.isLoadingLoginButton = true;
-        this.loginService.login(this.userLogin).subscribe(result => {
-            this.isLoadingLoginButton = false;
-            this.userToken = result.data;
-            this.message.success('登录成功');
-            this.router.navigateByUrl('home');
-        }, error => {
-            this.isLoadingLoginButton = false;
-            this.message.warning(error.message);
-        });
-    }
-
-    initValidLogin() {
-        // this.ValidLogin = this.formBuilder.group({
-        //     username: [null],
-        //     password: [null]
+        console.log(this.userLogin.value);
+        console.log(this.userLogin.valid);
+        // this.isLoadingLoginButton = true;
+        // this.loginService.login(this.userLogin.value).subscribe(result => {
+        //     this.isLoadingLoginButton = false;
+        //     this.userToken = result.data;
+        //     this.message.success('登录成功');
+        //     this.router.navigateByUrl('home');
+        // }, error => {
+        //     this.isLoadingLoginButton = false;
+        //     this.message.warning(error.message);
         // });
     }
-
 }
