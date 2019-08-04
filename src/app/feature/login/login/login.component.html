@@ -40,14 +40,14 @@
             </div>
             <form nz-form class="login-content-form" [formGroup]="userLogin" (ngSubmit)="login()">
                 <nz-form-item nzType="flex" nzJustify="center">
-                    <nz-form-control nzXs="22" nzSm="18">
+                    <nz-form-control nzXs="22" nzSm="18" nzErrorTip="用户名不能为空">
                         <nz-input-group nzPrefixIcon="user">
                             <input nz-input formControlName="username" placeholder="请输入用户名">
                         </nz-input-group>
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item nzType="flex" nzJustify="center">
-                    <nz-form-control nzXs="22" nzSm="18">
+                    <nz-form-control nzXs="22" nzSm="18" nzErrorTip="密码不能为空">
                         <nz-input-group nzPrefixIcon="lock">
                             <input nz-input type="password" formControlName="password" placeholder="请输入密码">
                         </nz-input-group>

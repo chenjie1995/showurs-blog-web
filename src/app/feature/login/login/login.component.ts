@@ -21,20 +21,22 @@ export class LoginComponent implements OnInit {
         private message: NzMessageService,
         private router: Router,
         private fb: FormBuilder) {
-            this.isLoadingLoginButton = false;
-            this.userLogin = this.fb.group({
-                username: ['', Validators.required],
-                password: ['', Validators.required]
-            });
     }
 
     ngOnInit() {
-
+        this.isLoadingLoginButton = false;
+        this.userLogin = this.fb.group({
+            username: ['', Validators.required],
+            password: ['', Validators.required]
+        });
     }
 
     login() {
+        for (const i in this.userLogin.controls) {
+            this.userLogin.controls[i].markAsDirty();
+            this.userLogin.controls[i].updateValueAndValidity();
+        }
         console.log(this.userLogin.value);
-        console.log(this.userLogin.valid);
         // this.isLoadingLoginButton = true;
         // this.loginService.login(this.userLogin.value).subscribe(result => {
         //     this.isLoadingLoginButton = false;
