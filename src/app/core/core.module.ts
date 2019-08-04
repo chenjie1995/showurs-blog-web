@@ -5,7 +5,7 @@ import { ConfigService } from './service/config.service';
 import { LocalStorageService } from './service/local-storage.service';
 import { AuthService } from './service/auth.service';
 import { HttpService } from './service/http.service';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { FormService } from './service/form.service';
 
 @NgModule({
     declarations: [],
@@ -16,7 +16,8 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
         ConfigService,
         LocalStorageService,
         AuthService,
-        HttpService
+        HttpService,
+        FormService
     ]
 })
 export class CoreModule { }

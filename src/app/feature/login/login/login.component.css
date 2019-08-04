@@ -39,6 +39,9 @@
 .login-button {
     width: 100%;
 }
+.icon-suffix-password {
+    cursor: pointer;
+}
 
 .login-content-bottom {
     width: 100%;

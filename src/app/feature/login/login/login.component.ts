@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { UserLogin } from 'src/app/vo/user-login';
 import { LoginService } from '../service/login.service';
 import { UserToken } from 'src/app/vo/user-token';
 import { Router } from '@angular/router';
+import { FormService } from 'src/app/core/service/form.service';
 
 @Component({
     selector: 'app-login',
@@ -14,10 +14,12 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
     isLoadingLoginButton: boolean;
+    passwordVisible: boolean;
     userLogin: FormGroup;
     userToken: UserToken;
 
     constructor(private loginService: LoginService,
+        private fromService: FormService,
         private message: NzMessageService,
         private router: Router,
         private fb: FormBuilder) {
@@ -25,27 +27,27 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.isLoadingLoginButton = false;
+        this.passwordVisible = false;
         this.userLogin = this.fb.group({
-            username: ['', Validators.required],
-            password: ['', Validators.required]
+            username: ['', [Validators.required, Validators.maxLength(18)]],
+            password: ['', [Validators.required, Validators.maxLength(18)]]
         });
     }
 
     login() {
-        for (const i in this.userLogin.controls) {
-            this.userLogin.controls[i].markAsDirty();
-            this.userLogin.controls[i].updateValueAndValidity();
+        if (this.userLogin.valid) {
+            this.isLoadingLoginButton = true;
+            this.loginService.login(this.userLogin.value).subscribe(result => {
+                this.isLoadingLoginButton = false;
+                this.userToken = result.data;
+                this.message.success('登录成功');
+                this.router.navigateByUrl('home');
+            }, error => {
+                this.isLoadingLoginButton = false;
+                this.message.warning(error.message);
+            });
+        } else {
+            this.fromService.showValidInfo(this.userLogin);
         }
-        console.log(this.userLogin.value);
-        // this.isLoadingLoginButton = true;
-        // this.loginService.login(this.userLogin.value).subscribe(result => {
-        //     this.isLoadingLoginButton = false;
-        //     this.userToken = result.data;
-        //     this.message.success('登录成功');
-        //     this.router.navigateByUrl('home');
-        // }, error => {
-        //     this.isLoadingLoginButton = false;
-        //     this.message.warning(error.message);
-        // });
     }
 }
