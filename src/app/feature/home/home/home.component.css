@@ -3,11 +3,15 @@ nz-layout {
 }
 
 nz-header {
+    background: #fff;
+    box-shadow: 0 2px 8px #f0f1f2;
 }
 
 nz-content {
     height: 100%;
+    background: #fff;
 }
 
 nz-footer {
+    background: #fff;
 }

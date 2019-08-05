@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from 'src/app/core/service/config.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 const userUrl: string = 'user/users';
 
@@ -10,13 +11,28 @@ const userUrl: string = 'user/users';
 })
 export class RegisterComponent implements OnInit {
 
-    isLoadingRegisterButton: boolean = false;
-    captchaUrl: string = `${this.configService.getApiUrl()}/${userUrl}/captcha-image`;
+    passwordVisible: boolean;
+    isLoadingRegisterButton: boolean;
+    captchaUrl: string;
+    userRegister: FormGroup;
 
-    constructor(private configService: ConfigService) { 
+    constructor(private configService: ConfigService,
+        private fb: FormBuilder) {
+        this.passwordVisible = true;
+        this.isLoadingRegisterButton = false;
+        this.captchaUrl = `${this.configService.getApiUrl()}/${userUrl}/captcha-image`;
+        this.userRegister = this.fb.group({
+            username: ['', [Validators.required]],
+            email: ['', [Validators.required, Validators.email]],
+            password: ['', [Validators.required]],
+            captcha: ['', [Validators.required]]
+        });
     }
 
     ngOnInit() {
     }
 
+    register() {
+
+    }
 }
