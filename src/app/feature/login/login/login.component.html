@@ -1,5 +1,5 @@
 <div class="container" nz-row nzType="flex" nzJustify="center" nzAlign="middle">
-    <div class="login-box" nz-col nzXs="24" nzSm="16" nzMd="12" nzLg="10" nzXl="7" nzXXl="5">
+    <div class="login-box" nz-col nzXs="24" nzSm="16" nzMd="12" nzLg="9" nzXl="7" nzXXl="5">
         <div class="login-content">
             <div class="login-content-title">
                 <img class="title-logo" src="assets/image/logo.svg">
@@ -8,53 +8,56 @@
             </div>
             <form nz-form class="login-content-form" [formGroup]="userLogin" (ngSubmit)="login()">
                 <nz-form-item nzType="flex" nzJustify="center">
-                    <nz-form-control nzXs="22" nzSm="18" [nzErrorTip]="usernameErrorTpl">
+                    <nz-form-control nzXs="24" nzSm="18" [nzErrorTip]="usernameErrorTpl">
                         <nz-input-group [nzPrefix]="prefixUsername">
                             <input nz-input formControlName="username" placeholder="请输入用户名">
+                            <ng-template #prefixUsername><i nz-icon nzType="user"></i></ng-template>
                         </nz-input-group>
+                        <ng-template #usernameErrorTpl let-control>
+                            <ng-container *ngIf="control.hasError('required')">
+                                请输入用户名
+                            </ng-container>
+                            <ng-container *ngIf="control.hasError('maxlength')">
+                                用户名长度过长
+                            </ng-container>
+                        </ng-template>
                     </nz-form-control>
                 </nz-form-item>
+
                 <nz-form-item nzType="flex" nzJustify="center">
-                    <nz-form-control nzXs="22" nzSm="18" [nzErrorTip]="passwordErrorTpl">
+                    <nz-form-control nzXs="24" nzSm="18" [nzErrorTip]="passwordErrorTpl">
                         <nz-input-group [nzPrefix]="prefixPassword" [nzSuffix]="suffixPassword">
-                            <input nz-input [type]="passwordVisible ? 'text' : 'password'" formControlName="password"
-                                placeholder="请输入密码">
+                            <input nz-input [type]="passwordVisible ? 'text' : 'password'" formControlName="password" placeholder="请输入密码">
+                            <ng-template #prefixPassword><i nz-icon nzType="lock"></i></ng-template>
+                            <ng-template #suffixPassword>
+                                <i nz-icon class="icon-suffix-password" [nzType]="passwordVisible ? 'eye' : 'eye-invisible'"
+                                    (click)="passwordVisible = !passwordVisible"></i>
+                            </ng-template>
                         </nz-input-group>
+                        <ng-template #passwordErrorTpl let-control>
+                            <ng-container *ngIf="control.hasError('required')">
+                                请输入密码
+                            </ng-container>
+                            <ng-container *ngIf="control.hasError('maxlength')">
+                                密码长度过长
+                            </ng-container>
+                        </ng-template>
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item nzType="flex" nzJustify="center">
-                    <nz-form-control nzXs="22" nzSm="18">
+                    <nz-form-control nzXs="24" nzSm="18">
                         <button class="login-button" type="submit" nz-button nzType="primary"
                             [nzLoading]="isLoadingLoginButton">登录</button>
                     </nz-form-control>
                 </nz-form-item>
             </form>
             <div class="login-content-bottom">
-                <span class="bottom-text">没有账号？<a routerLink="/register"><i nz-icon type="smile"></i> 现在注册</a></span>
+                <span class="bottom-text">没有账号？<a routerLink="/register">现在注册😮</a></span>
             </div>
         </div>
     </div>
 </div>
 
-<ng-template #prefixUsername><i nz-icon nzType="user"></i></ng-template>
-<ng-template #prefixPassword><i nz-icon nzType="lock"></i></ng-template>
-<ng-template #suffixPassword>
-    <i nz-icon class="icon-suffix-password" [nzType]="passwordVisible ? 'eye' : 'eye-invisible'"
-        (click)="passwordVisible = !passwordVisible"></i>
-</ng-template>
-<ng-template #usernameErrorTpl let-control>
-    <ng-container *ngIf="control.hasError('required')">
-        请输入用户名
-    </ng-container>
-    <ng-container *ngIf="control.hasError('maxlength')">
-        用户名长度过长
-    </ng-container>
-</ng-template>
-<ng-template #passwordErrorTpl let-control>
-    <ng-container *ngIf="control.hasError('required')">
-        请输入密码
-    </ng-container>
-    <ng-container *ngIf="control.hasError('maxlength')">
-        密码长度过长
-    </ng-container>
-</ng-template>
+
+
+

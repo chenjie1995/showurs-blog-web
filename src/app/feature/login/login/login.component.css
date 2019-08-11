@@ -48,8 +48,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 192.1px;
+    margin-top: 192px;
 }
 .bottom-text {
     font-size: 12px;
+}
+
+@media (max-width: 575px) {
+    .login-box {
+        box-shadow: none;
+        padding: 24px 32px;
+    }
 }

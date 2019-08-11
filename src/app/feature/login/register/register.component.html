@@ -1,59 +1,118 @@
 <div class="container" nz-row nzType="flex" nzJustify="center" nzAlign="middle">
-    <div class="register-box" nz-col nzXs="24" nzSm="16" nzMd="12" nzLg="10" nzXl="7" nzXXl="5">
+    <div class="register-box" nz-col nzXs="24" nzSm="16" nzMd="12" nzLg="9" nzXl="7" nzXXl="5">
         <div class="register-content">
             <div class="register-content-title">
                 <img class="title-logo" src="assets/image/logo.svg">
                 <h2 class="title-headline">注册</h2>
                 <span class="title-description">注册 <a routerLink="/home">Showurs Blog</a> 账号，留下你的想法吧</span>
             </div>
-            <form nz-form class="register-content-form" [formGroup]="userRegister" (ngSubmit)="register()">
+            <form nz-form class="register-content-form" [formGroup]="userRegister" (ngSubmit)="register()" nzNoColon>
+                
                 <nz-form-item nzType="flex" nzJustify="center" nzGutter="8">
-                    <nz-form-label nzXs="22" nzSm="5" nzRequired nzFor="username">用户名</nz-form-label>
-                    <nz-form-control nzXs="22" nzSm="17">
-                        <input nz-input id="username" name="username" placeholder="请输入你的用户名" />
+                    <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="username">用户名</nz-form-label>
+                    <nz-form-control nzXs="24" nzSm="17" [nzErrorTip]="usernameErrorTpl">
+                        <input nz-input id="username" formControlName="username" placeholder="请输入你的用户名" />
+                        <ng-template #usernameErrorTpl let-control>
+                            <ng-container *ngIf="control.hasError('required')">
+                                请输入用户名
+                            </ng-container>
+                            <ng-container *ngIf="control.hasError('maxlength')">
+                                用户名长度过长
+                            </ng-container>
+                        </ng-template>
                     </nz-form-control>
                 </nz-form-item>
+
                 <nz-form-item nzType="flex" nzJustify="center" nzGutter="8">
-                    <nz-form-label nzXs="22" nzSm="5" nzRequired nzFor="email">email</nz-form-label>
-                    <nz-form-control nzXs="22" nzSm="17">
-                        <input nz-input id="email" name="email" placeholder="请输入你的电子邮箱" />
+                    <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="email">email</nz-form-label>
+                    <nz-form-control nzXs="24" nzSm="17" [nzErrorTip]="emailErrorTpl">
+                        <input nz-input id="email" formControlName="email" placeholder="请输入你的电子邮箱" />
+                        <ng-template #emailErrorTpl let-control>
+                            <ng-container *ngIf="control.hasError('required')">
+                                请输入邮箱地址
+                            </ng-container>
+                            <ng-container *ngIf="control.hasError('email')">
+                                请输入正确格式的邮箱地址
+                            </ng-container>
+                        </ng-template>
                     </nz-form-control>
                 </nz-form-item>
+
                 <nz-form-item nzType="flex" nzJustify="center" nzGutter="8">
-                    <nz-form-label nzXs="22" nzSm="5" nzRequired nzFor="password">密码</nz-form-label>
-                    <nz-form-control nzXs="22" nzSm="17">
-                        <nz-input-group [nzSuffix]="suffixPassword">
-                            <input nz-input [type]="passwordVisible ? 'text' : 'password'" id="password" name="password" placeholder="请输入你的密码" />
-                        </nz-input-group>
+                    <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="password">密码</nz-form-label>
+                    <nz-form-control nzXs="24" nzSm="17" [nzErrorTip]="passwordErrorTpl">
+                        <input nz-input type="password" id="password" formControlName="password" placeholder="请输入你的密码" />
+                        <ng-template #passwordErrorTpl let-control>
+                            <ng-container *ngIf="control.hasError('required')">
+                                请输入密码
+                            </ng-container>
+                            <ng-container *ngIf="control.hasError('maxlength')">
+                                密码长度过长
+                            </ng-container>
+                        </ng-template>
                     </nz-form-control>
                 </nz-form-item>
+
                 <nz-form-item nzType="flex" nzJustify="center" nzGutter="8">
-                    <nz-form-label nzXs="22" nzSm="5" nzRequired nzFor="captcha">验证码</nz-form-label>
-                    <nz-form-control nzXs="22" nzSm="17">
-                        <div nz-row nzGutter="8">
+                    <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="confirmPassword">确认密码</nz-form-label>
+                    <nz-form-control nzXs="24" nzSm="17" [nzErrorTip]="confirmPasswordErrorTpl">
+                        <input nz-input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="请确认你的密码" />
+                        <ng-template #confirmPasswordErrorTpl let-control>
+                            <ng-container *ngIf="control.hasError('required')">
+                                请确认密码
+                            </ng-container>
+                            <ng-container *ngIf="control.hasError('maxlength')">
+                                密码长度过长
+                            </ng-container>
+                            <ng-container *ngIf="control.hasError('confirm')">
+                                密码不同
+                            </ng-container>
+                        </ng-template>
+                    </nz-form-control>
+                </nz-form-item>
+
+                <nz-form-item nzType="flex" nzJustify="center" nzGutter="8">
+                    <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="captcha">验证码</nz-form-label>
+                    <nz-form-control nzXs="24" nzSm="17" [nzErrorTip]="captchaErrorTpl">
+                        <div nz-row nzGutter="8" nzType="flex" nzAlign="middle">
                             <div nz-col nzSpan="12">
-                                <input nz-input id="captcha" name="captcha" placeholder="请输入验证码" />
+                                <input nz-input id="captcha" formControlName="captcha" placeholder="请输入验证码" />
                             </div>
                             <div nz-col nzSpan="12">
                                 <img class="form-captcha" [src]="captchaUrl">
                             </div>
                         </div>
+                        <ng-template #captchaErrorTpl let-control>
+                            <ng-container *ngIf="control.hasError('required')">
+                                请输入验证码
+                            </ng-container>
+                            <ng-container *ngIf="control.hasError('maxlength')">
+                                请输入正确长度的验证码
+                            </ng-container>
+                        </ng-template>
                     </nz-form-control>
                 </nz-form-item>
-                <nz-form-item nzType="flex" nzJustify="start">
-                    <nz-form-control nzXs="12" nzSm="6" nzPush="6">
-                        <button class="form-register-button" nz-button nzType="primary" [nzLoading]="isLoadingRegisterButton">注册</button>
+
+                <nz-form-item nzType="flex" nzJustify="center" nzGutter="8">
+                    <nz-form-label nzXs="0" nzSm="7"></nz-form-label>
+                    <nz-form-control nzXs="24" nzSm="17">
+                        <div nz-row nzGutter="8">
+                            <div nz-col nzXs="24" nzSm="12">
+                                <button type="submit" class="form-register-button" nz-button nzType="primary"
+                                    [nzLoading]="isLoadingRegisterButton">注册</button>
+                            </div>
+                            <div nz-col nzXs="0" nzSm="12">
+                            </div>
+                        </div>
                     </nz-form-control>
                 </nz-form-item>
+
             </form>
             <div class="register-content-bottom">
-                <span class="bottom-text">已有账号？<a routerLink="/login"><i nz-icon type="smile"></i> 马上登录</a></span>
+                <span class="bottom-text">已有账号？<a routerLink="/login">马上登录😉</a></span>
             </div>
         </div>
     </div>
 </div>
 
-<ng-template #suffixPassword>
-    <i nz-icon class="icon-suffix-password" [nzType]="passwordVisible ? 'eye' : 'eye-invisible'"
-        (click)="passwordVisible = !passwordVisible"></i>
-</ng-template>
+
