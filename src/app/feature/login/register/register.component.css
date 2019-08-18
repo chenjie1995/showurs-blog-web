@@ -36,9 +36,14 @@
 .register-content-form {
     width: 100%;
 }
+.form-captcha-box {
+    display: flex;
+}
 .form-captcha {
     width: 100%;
     height: 32px;
+    cursor: pointer;
+    border-radius: 4px;
 }
 .form-register-button {
     width: 100%;
