@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigService } from 'src/app/core/service/config.service';
+import { AuthService } from 'src/app/core/service/auth.service';
 
 @Component({
     selector: 'app-nav',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+    appName: string;
 
-    constructor() { }
+    constructor(private configService: ConfigService,
+        private authService: AuthService) { }
 
     ngOnInit() {
+        this.appName = this.configService.getAppName();
     }
 
 }

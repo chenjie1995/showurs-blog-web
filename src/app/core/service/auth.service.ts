@@ -28,7 +28,7 @@ export class AuthService {
         this.saveAuthInfo(userToken);
         console.log(this.userAuth);
     }
-    
+
     saveAuthInfo(userToken: UserToken): void {
         this.localStorageService.set(tokenKey, userToken.token);
         this.localStorageService.set(rolesKey, userToken.roles);
