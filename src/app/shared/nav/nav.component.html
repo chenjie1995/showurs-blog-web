@@ -1,12 +1,19 @@
 <nz-header>
     <div class="header-box">
-        <img class="header-logo" src="assets/image/logo.svg">
-        <span class="header-title">{{ appName }}</span>
-
-        <div class="header-userinfo">
-            <nz-avatar nzText="T">
-
-            </nz-avatar>
+        <div class="header-title">
+            <img class="header-title-logo" src="assets/image/logo.svg">
+            <span class="header-title-text">{{ appName }}</span>
+        </div>
+        
+        <div class="header-auth">
+            <div class="header-userinfo" *ngIf="logined">
+                <nz-avatar nzText="T">
+                </nz-avatar>
+            </div>
+            <div class="header-login" *ngIf="!logined">
+                <button class="login-button" nz-button nzType="primary">登录</button>
+                <button class="register-button" nz-button nzType="default">注册</button>
+            </div>
         </div>
     </div>
 </nz-header>

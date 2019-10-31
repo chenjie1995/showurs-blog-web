@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/core/service/auth.service';
 })
 export class NavComponent implements OnInit {
     appName: string;
+    logined: boolean = false;
 
     constructor(private configService: ConfigService,
         private authService: AuthService) { }
