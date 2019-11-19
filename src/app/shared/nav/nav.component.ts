@@ -9,13 +9,15 @@ import { AuthService } from 'src/app/core/service/auth.service';
 })
 export class NavComponent implements OnInit {
     appName: string;
-    logined: boolean = false;
+    logined: boolean;
 
     constructor(private configService: ConfigService,
-        private authService: AuthService) { }
+        private authService: AuthService) {
+    }
 
     ngOnInit() {
         this.appName = this.configService.getAppName();
+        this.logined = this.authService.isLogin();
     }
-
+    
 }

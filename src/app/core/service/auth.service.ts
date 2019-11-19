@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { UserToken } from 'src/app/vo/user-token';
+import { UserToken } from 'src/app/vo/user/user-token';
 import { LocalStorageService } from './local-storage.service';
-import { UserAuth } from 'src/app/vo/user-auth';
-import { Role } from 'src/app/vo/role';
-import { Power } from 'src/app/vo/power';
+import { UserAuth } from 'src/app/vo/user/user-auth';
+import { Role } from 'src/app/vo/user/role';
+import { Power } from 'src/app/vo/user/power';
 
 const tokenKey = 'Authorization';
 const rolesKey = 'roles';
@@ -48,5 +48,13 @@ export class AuthService {
         } else {
             this.userAuth.isLogin = false;
         }
+    }
+
+    isLogin(): boolean {
+        return this.userAuth.isLogin;
+    }
+
+    getToken(): string {
+        return this.userAuth.token;
     }
 }

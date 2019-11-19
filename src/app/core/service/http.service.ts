@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
-import { ErrorInfo } from 'src/app/vo/error-info';
+import { ErrorInfo } from 'src/app/vo/common/error-info';
 
 @Injectable({
     providedIn: 'root'

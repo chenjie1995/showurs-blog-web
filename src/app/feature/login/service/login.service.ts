@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, retry } from 'rxjs/operators';
 
-import { Result } from 'src/app/vo/result';
-import { UserLogin } from 'src/app/vo/user-login';
-import { UserToken } from 'src/app/vo/user-token';
+import { Result } from 'src/app/vo/common/result';
+import { UserLogin } from 'src/app/vo/user/user-login';
+import { UserToken } from 'src/app/vo/user/user-token';
 import { ConfigService } from 'src/app/core/service/config.service';
 import { HttpService } from 'src/app/core/service/http.service';
-import { UserRegister } from 'src/app/vo/user-register';
+import { UserRegister } from 'src/app/vo/user/user-register';
 
 const userUrl = 'user/users';
 
