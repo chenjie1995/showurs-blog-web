@@ -52,11 +52,11 @@ export class LoginComponent implements OnInit {
         }
     }
 
-    loginBefore() {
+    private loginBefore(): void {
         this.isLoadingLoginButton = true;
     }
 
-    loginAfter() {
+    private loginAfter(): void {
         this.isLoadingLoginButton = false;
     }
 }

@@ -2,12 +2,10 @@ import { Injectable } from '@angular/core';
 import { UserToken } from 'src/app/vo/user/user-token';
 import { LocalStorageService } from './local-storage.service';
 import { UserAuth } from 'src/app/vo/user/user-auth';
-import { Role } from 'src/app/vo/user/role';
-import { Power } from 'src/app/vo/user/power';
+import { User } from 'src/app/vo/user/user';
 
 const tokenKey = 'Authorization';
-const rolesKey = 'roles';
-const powersKey = 'powers';
+const userKey = 'user';
 
 @Injectable({
     providedIn: 'root'
@@ -20,34 +18,29 @@ export class AuthService {
         console.log(this.userAuth);
     }
 
+    initAuth(): void {
+        this.userAuth = new UserAuth();
+        const token = this.localStorageService.get<string>(tokenKey);
+        const user = this.localStorageService.get<User>(userKey);
+        if (token) {
+            this.userAuth.isLogin = true;
+            this.userAuth.token = token;
+            this.userAuth.user = user;
+        } else {
+            this.userAuth.isLogin = false;
+        }
+    }
+
     login(userToken: UserToken): void {
         this.userAuth.isLogin = true;
         this.userAuth.token = userToken.token;
-        this.userAuth.roles = userToken.roles;
-        this.userAuth.powers = userToken.powers;
+        this.userAuth.user = userToken.user;
         this.saveAuthInfo(userToken);
-        console.log(this.userAuth);
     }
 
     saveAuthInfo(userToken: UserToken): void {
         this.localStorageService.set(tokenKey, userToken.token);
-        this.localStorageService.set(rolesKey, userToken.roles);
-        this.localStorageService.set(powersKey, userToken.powers);
-    }
-
-    initAuth(): void {
-        this.userAuth = new UserAuth();
-        const token = this.localStorageService.get<string>(tokenKey);
-        const roles = this.localStorageService.getList<Role>(rolesKey);
-        const powers = this.localStorageService.getList<Power>(powersKey);
-        if (token) {
-            this.userAuth.isLogin = true;
-            this.userAuth.token = token;
-            this.userAuth.roles = roles;
-            this.userAuth.powers = powers;
-        } else {
-            this.userAuth.isLogin = false;
-        }
+        this.localStorageService.set(userKey, userToken.user);
     }
 
     isLogin(): boolean {
@@ -56,5 +49,9 @@ export class AuthService {
 
     getToken(): string {
         return this.userAuth.token;
+    }
+
+    getUser(): User {
+        return this.userAuth.user;
     }
 }

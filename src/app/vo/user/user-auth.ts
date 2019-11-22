@@ -1,9 +1,8 @@
 import { Role } from './role';
-import { Power } from './power';
+import { User } from './user';
 
 export class UserAuth {
     isLogin: boolean;
     token: string;
-    roles?: Role[];
-    powers?: Power[];
+    user: User;
 }
