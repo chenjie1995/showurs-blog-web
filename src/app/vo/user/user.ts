@@ -1,3 +1,5 @@
+import { Role } from './role';
+
 export class User {
     id: number;
     username: string;
@@ -11,5 +13,5 @@ export class User {
     createTime: string;
     lastLoginTime?: string;
     status: string;
-    roles?: [];
+    roles?: Array<Role>;
 }

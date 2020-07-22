@@ -29,12 +29,4 @@ export class LoginService {
         return this.httpClient.post<Result<UserToken>>(`${this.configService.getApiUrl()}/${userUrl}/register`, userRegister,
             { headers: { 'CaptchaKey': captchaKey } }).pipe(catchError(this.httpService.handleError));
     }
-
-    // getCaptcha(width?: number, height?: number) {
-    //     return this.httpClient.get(`${this.configService.getApiUrl()}/${userUrl}/captcha-image`, {
-    //         observe: 'response',
-    //         responseType: 'blob',
-    //         params: { 'width': width?String(width):'', 'height': height?String(height):'' }
-    //     }).pipe(retry(1), catchError(this.httpService.handleError));
-    // }
 }

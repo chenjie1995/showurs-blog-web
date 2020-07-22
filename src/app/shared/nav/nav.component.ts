@@ -19,5 +19,4 @@ export class NavComponent implements OnInit {
         this.appName = this.configService.getAppName();
         this.logined = this.authService.isLogin();
     }
-    
 }

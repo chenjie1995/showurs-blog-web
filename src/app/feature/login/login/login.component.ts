@@ -3,7 +3,6 @@ import { NzMessageService } from 'ng-zorro-antd';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { LoginService } from '../service/login.service';
-import { UserToken } from 'src/app/vo/user/user-token';
 import { Router } from '@angular/router';
 import { FormService } from 'src/app/core/service/form.service';
 import { AuthService } from 'src/app/core/service/auth.service';
